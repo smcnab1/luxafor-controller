@@ -1,0 +1,130 @@
+name: "Extension Feature Request"
+description: "Request a new capability or improvement in the Luxafor Controller"
+title: "feat: <short description>"
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement! Please provide as much detail as possible.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Request type
+      options:
+        - New command
+        - Improve existing command
+        - Menubar experience
+        - Preferences / Settings
+        - Performance
+        - UI / UX
+        - Developer Experience
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: One-liner describing the feature
+      placeholder: e.g. Add custom hex colors to the menubar
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What problem does this feature address? Why is it useful?
+    validations:
+      required: false
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior, options, and user flow. Include examples.
+      placeholder: |
+        - Add a preference "Default startup color"
+        - Menubar: add quick-access to custom hex colors
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any alternative approaches or prior art
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope (select all that apply)
+      options:
+        - label: Control command
+        - label: Menubar command
+        - label: Service / API
+        - label: Preferences / Settings
+        - label: Docs
+        - label: Other
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Bullet points that define "done"
+      placeholder: |
+        - Changing color via menubar updates immediately
+        - State remains consistent after auto-refresh
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: breaking
+    attributes:
+      label: Breaking changes
+      options:
+        - label: This may change existing behavior or preferences
+        - label: Migration steps are described below
+
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration considerations (if any)
+      description: Preference changes or user-visible behavior changes
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / mockups
+      description: Drag-and-drop images that illustrate the proposal
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and did not find a duplicate
+          required: true
+        - label: This is within the scope of the extension
+          required: true
+        - label: I am willing to contribute a PR for this feature
+          required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Links, references, or anything else
+    validations:
+      required: false
+
