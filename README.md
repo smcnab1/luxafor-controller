@@ -1,18 +1,35 @@
+<!-- TOP ROW OF BADGES -->
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![Kofi][kofi-badge]][kofi-url]
+
 <a name="readme-top"></a>
 
 <div align="center">
+  <a href="https://github.com/smcnab1/luxafor-controller">
+  </a>
     <img src="media/logo.png" alt="Logo" width="80" height="80" />
   <h3 align="center">Luxafor Controller</h3>
   <p align="center">
     Control your Luxafor LED device directly from Raycast with real-time status monitoring and quick color controls.
-  <br />
-  <a href="./ROADMAP.md"><strong>Explore the roadmap »</strong></a>
-  <br />
+    <br />
+    <a href="https://www.raycast.com/smcnab1/luxafor-controller"><strong>View in Raycast Store »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/smcnab1/luxafor-controller">View Source</a>
+    ·
+    <a href="https://github.com/smcnab1/luxafor-controller/issues/new?template=bug_report.yml">Report Bug</a>
+    ·
+    <a href="https://github.com/smcnab1/luxafor-controller/issues/new?template=feature_request.yml">Request Feature</a>
   </p>
 </div>
 
 <details>
-  <summary>Table of Contents</summary>
+  <summary>📋 Table of Contents</summary>
 
 - [About The Project](#about-the-project)
   - [Features](#features)
@@ -30,7 +47,9 @@
 
 ## About The Project
 <div align="center">
+  <a href="https://github.com/smcnab1/luxafor-controller">
     <img src="media/luxafor-controller-2.png" alt="Screenshot" width="100%" height="auto">
+  </a>
   </div>
 
 **Luxafor Controller** is a Raycast extension that provides direct control over your Luxafor LED device. Control colors and monitor device status from both the main interface and your menubar. Perfect for developers, streamers, or anyone who wants quick access to their Luxafor device controls.
@@ -50,6 +69,8 @@
 - `@raycast/api`, `@raycast/utils`
 - Axios for HTTP requests
 - Local storage for state persistence
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
 
@@ -83,6 +104,8 @@
 - **Status Monitoring**: See online/offline status at a glance
 - **Auto-refresh**: Updates every 30 seconds without interrupting user actions
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Commands
 
 ### Control Luxafor
@@ -114,6 +137,8 @@ Shows real-time device status in your menubar:
    - The "Luxafor Status" command will appear in your menubar
    - Shows current device color and status
    - Provides quick access to common actions
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Notes
 
@@ -154,6 +179,8 @@ npm run dev
 npm run build
 ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## References
 
 - Luxafor Webhook API basics and endpoints: [Help Scout Docs](https://luxafor.helpscoutdocs.com/article/25-webhook-api-basics-and-guidelines), [Luxafor UK](https://luxafor.co.uk/webhook-api/)
@@ -167,6 +194,9 @@ See [ROADMAP.md](./ROADMAP.md) for planned features and improvements.
 ### Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ### License
 
