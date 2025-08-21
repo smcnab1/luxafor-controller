@@ -5,7 +5,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![Kofi][kofi-badge]][kofi-url]
 
 <a name="readme-top"></a>
 
@@ -193,11 +192,30 @@ See [ROADMAP.md](./ROADMAP.md) for planned features and improvements.
 
 ### Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions welcome. Please open an issue to discuss changes first.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/my-change`)
+3. Commit your changes (`git commit -m 'feat: ...'`)
+4. Push to your branch (`git push origin feature/my-change`)
+5. Open a Pull Request
 
 ### License
 
-Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
+MIT — see [LICENSE](./LICENSE) for details.
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/smcnab1/luxafor-controller.svg?style=for-the-badge
+[contributors-url]: https://github.com/smcnab1/luxafor-controller/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/smcnab1/luxafor-controller.svg?style=for-the-badge
+[forks-url]: https://github.com/smcnab1/luxafor-controller/network/members
+[stars-shield]: https://img.shields.io/github/stars/smcnab1/luxafor-controller.svg?style=for-the-badge
+[stars-url]: https://github.com/smcnab1/luxafor-controller/stargazers
+[issues-shield]: https://img.shields.io/github/issues/smcnab1/luxafor-controller.svg?style=for-the-badge
+[issues-url]: https://github.com/smcnab1/luxafor-controller/issues
+[license-shield]: https://img.shields.io/github/license/smcnab1/luxafor-controller.svg?style=for-the-badge
+[license-url]: https://github.com/smcnab1/luxafor-controller/blob/main/LICENSE
+[product-screenshot]: media/luxafor-controller-1.png
+
