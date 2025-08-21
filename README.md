@@ -1,14 +1,13 @@
 <a name="readme-top"></a>
 
 <div align="center">
-    <img src="logo.png" alt="Logo" width="80" height="80" />
+    <img src="media/logo.png" alt="Logo" width="80" height="80" />
   <h3 align="center">Luxafor Controller</h3>
   <p align="center">
     Control your Luxafor LED device directly from Raycast with real-time status monitoring and quick color controls.
-
-    <br />
-    <a href="./ROADMAP.md"><strong>Explore the roadmap »</strong></a>
-    <br />
+  <br />
+  <a href="./ROADMAP.md"><strong>Explore the roadmap »</strong></a>
+  <br />
   </p>
 </div>
 
@@ -30,8 +29,11 @@
 </details>
 
 ## About The Project
+<div align="center">
+    <img src="media/luxafor-controller-2.png" alt="Screenshot" width="100%" height="auto">
+  </div>
 
-**Luxafor Controller** is a Raycast extension that provides direct control over your Luxafor LED device. Control colors, patterns, and monitor device status from both the main interface and your menubar. Perfect for developers, streamers, or anyone who wants quick access to their Luxafor device controls.
+**Luxafor Controller** is a Raycast extension that provides direct control over your Luxafor LED device. Control colors and monitor device status from both the main interface and your menubar. Perfect for developers, streamers, or anyone who wants quick access to their Luxafor device controls.
 
 ### Features
 
@@ -91,6 +93,7 @@ Shows real-time device status in your menubar:
 - **Color indicator**: Shows current device color with matching icon tint
 - **Online/offline status**: Real-time connection status
 - **Quick actions**: Turn off, set red/green/blue directly from menubar
+- **Customise**: Choose from a simple red/green toggle menu or a colorful menu
 - **Last action**: Shows what was last performed
 - **Auto-refresh**: Updates every 30 seconds (won't overwrite recent user actions)
 
@@ -127,7 +130,7 @@ Shows real-time device status in your menubar:
 
 ## Supported Devices
 
-- Luxafor Flag
+- Luxafor Flag (Tested to work)
 - Luxafor Colorblind Flag  
 - Luxafor Orb
 - Luxafor Bluetooth Pro
@@ -167,4 +170,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ### License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more information.
