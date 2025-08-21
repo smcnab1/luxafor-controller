@@ -83,7 +83,7 @@ body:
       options:
         - api.luxafor.com
         - api.luxafor.co.uk
-      default: api.luxafor.com
+      default: 0
     validations:
       required: false
 
