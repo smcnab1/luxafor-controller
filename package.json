@@ -9,8 +9,7 @@
   "contributors": [],
   "categories": [
     "Developer Tools",
-    "Productivity",
-    "Utilities"
+    "Productivity"
   ],
   "license": "MIT",
   "platforms": [
@@ -27,7 +26,8 @@
       "name": "luxafor-status",
       "title": "Luxafor Status",
       "description": "Show Luxafor device status in menubar",
-      "mode": "menu-bar"
+      "mode": "menu-bar",
+      "interval": "5s"
     }
   ],
   "preferences": [
@@ -36,7 +36,9 @@
       "type": "textfield",
       "required": true,
       "title": "Luxafor User ID",
-      "description": "Your Luxafor User ID from the Webhook tab in Luxafor software"
+      "description": "Your Luxafor User ID from the Webhook tab in Luxafor software",
+      "placeholder": "Enter your Luxafor User ID",
+      "label": "User ID"
     },
     {
       "name": "apiEndpoint",
@@ -45,6 +47,7 @@
       "title": "API Endpoint",
       "description": "Choose your preferred API endpoint",
       "default": "com",
+      "label": "API Endpoint",
       "data": [
         {
           "title": "api.luxafor.com",
@@ -55,11 +58,39 @@
           "value": "co.uk"
         }
       ]
+    },
+    {
+      "name": "menubarMode",
+      "type": "dropdown",
+      "required": false,
+      "title": "Menubar Layout",
+      "description": "Choose between simple toggle or full color control",
+      "default": "simple",
+      "label": "Menubar Layout",
+      "data": [
+        {
+          "title": "Simple Toggle (Red/Green)",
+          "value": "simple"
+        },
+        {
+          "title": "Full Color Control",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "name": "debugMode",
+      "type": "checkbox",
+      "required": false,
+      "title": "Enable Debug Mode",
+      "description": "Show detailed debug information and logging",
+      "default": false,
+      "label": "Debug Mode"
     }
   ],
   "dependencies": {
-    "@raycast/api": "1.102.4",
-    "@raycast/utils": "2.2.0",
+    "@raycast/api": "^1.102.4",
+    "@raycast/utils": "^2.2.0",
     "axios": "^1.6.0"
   },
   "devDependencies": {

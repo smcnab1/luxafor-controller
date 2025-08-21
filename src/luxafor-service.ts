@@ -6,11 +6,26 @@ export interface LuxaforConfig {
   apiEndpoint: 'com' | 'co.uk';
 }
 
+export type LuxaforColor =
+  | 'red'
+  | 'green'
+  | 'yellow'
+  | 'blue'
+  | 'white'
+  | 'cyan'
+  | 'magenta';
+
 export interface DeviceStatus {
   isOnline: boolean;
   currentColor: string;
   lastSeen: Date | null;
   lastAction: string;
+}
+
+export interface ApiResponse {
+  success: boolean;
+  data?: Record<string, unknown>;
+  error?: string;
 }
 
 export class LuxaforService {
@@ -23,41 +38,56 @@ export class LuxaforService {
     this.baseUrl = `https://api.luxafor.${config.apiEndpoint}/webhook/v1/actions`;
   }
 
-  private async makeRequest(endpoint: string, actionFields: Record<string, string>) {
+  private async makeRequest(
+    endpoint: string,
+    actionFields: Record<string, string>,
+  ): Promise<ApiResponse> {
     try {
-      const response = await axios.post(`${this.baseUrl}/${endpoint}`, {
-        userId: this.config.userId,
-        actionFields
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      // Update current color based on action
-      this.updateCurrentColor(endpoint, actionFields);
-      
+      const response = await axios.post(
+        `${this.baseUrl}/${endpoint}`,
+        {
+          userId: this.config.userId,
+          actionFields,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
       return { success: true, data: response.data };
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      return { 
-        success: false, 
-        error: errorMessage
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      return {
+        success: false,
+        error: errorMessage,
       };
     }
   }
 
-  private updateCurrentColor(endpoint: string, actionFields: Record<string, string>) {
+  private updateCurrentColor(
+    endpoint: string,
+    actionFields: Record<string, string>,
+  ): void {
     if (endpoint === 'solid_color') {
       if (actionFields.color === 'custom') {
-        luxaforState.setColor(actionFields.custom_color, `Set custom color ${actionFields.custom_color}`);
+        // Handle white color specially - if the custom color is FFFFFF, treat it as white
+        if (actionFields.custom_color === 'FFFFFF') {
+          luxaforState.setColor('white', `Set white`);
+        } else {
+          luxaforState.setColor(
+            actionFields.custom_color,
+            `Set custom color ${actionFields.custom_color}`,
+          );
+        }
       } else {
         luxaforState.setColor(actionFields.color, `Set ${actionFields.color}`);
       }
     } else if (endpoint === 'blink') {
-      luxaforState.setColor(actionFields.color, `Blink ${actionFields.color}`);
-    } else if (endpoint === 'pattern') {
-      luxaforState.setColor('pattern', `Pattern ${actionFields.pattern}`);
+      // Don't update color state for blink - handled specially in blink method
+      // to restore original color after blinking
     }
   }
 
@@ -77,61 +107,93 @@ export class LuxaforService {
   }
 
   // Turn device off (black color)
-  async turnOff() {
-    luxaforState.setColor('000000', 'Turn Off');
+  async turnOff(): Promise<ApiResponse> {
+    // Update global state first to ensure immediate UI feedback
+    await luxaforState.setColor('off', 'Turn Off');
     return this.makeRequest('solid_color', {
       color: 'custom',
-      custom_color: '000000'
+      custom_color: '000000',
     });
   }
 
   // Set solid color
-  async setSolidColor(color: 'red' | 'green' | 'yellow' | 'blue' | 'white' | 'cyan' | 'magenta') {
-    luxaforState.setColor(color, `Set ${color}`);
+  async setSolidColor(color: LuxaforColor): Promise<ApiResponse> {
+    // Handle white as a custom hex color since the API doesn't support white natively
+    if (color === 'white') {
+      await luxaforState.setColor('white', 'Set white');
+      return this.makeRequest('solid_color', {
+        color: 'custom',
+        custom_color: 'FFFFFF',
+      });
+    }
+
+    await luxaforState.setColor(color, `Set ${color}`);
+
     return this.makeRequest('solid_color', {
-      color
+      color,
     });
   }
 
   // Set custom hex color
-  async setCustomColor(hexColor: string) {
+  async setCustomColor(hexColor: string): Promise<ApiResponse> {
     // Ensure hex color is 6 characters and valid
     const cleanHex = hexColor.replace('#', '').padEnd(6, '0').substring(0, 6);
-    
-    luxaforState.setColor(cleanHex, `Set custom color ${cleanHex}`);
-    
+
+    await luxaforState.setColor(cleanHex, `Set custom color ${cleanHex}`);
+
     return this.makeRequest('solid_color', {
       color: 'custom',
-      custom_color: cleanHex
+      custom_color: cleanHex,
     });
   }
 
   // Blink with color
-  async blink(color: 'red' | 'green' | 'yellow' | 'blue' | 'white' | 'cyan' | 'magenta') {
-    luxaforState.setColor(color, `Blink ${color}`);
-    return this.makeRequest('blink', {
-      color
-    });
-  }
+  async blink(color: LuxaforColor): Promise<ApiResponse> {
+    // Store the current color before blinking
+    const currentStatus = luxaforState.getStatus();
+    const originalColor = currentStatus.currentColor;
 
-  // Set pattern
-  async setPattern(pattern: 'police' | 'traffic lights' | 'random 1' | 'random 2' | 'random 3' | 'random 4' | 'random 5') {
-    luxaforState.setColor('pattern', `Pattern ${pattern}`);
-    return this.makeRequest('pattern', {
-      pattern
-    });
+    // Temporarily update state to show blink action
+    await luxaforState.updateStatus({ lastAction: `Blink ${color}` });
+
+    // Send blink command to device
+    let result: ApiResponse;
+    if (color === 'white') {
+      result = await this.makeRequest('blink', {
+        color: 'custom',
+        custom_color: 'FFFFFF',
+      });
+    } else {
+      result = await this.makeRequest('blink', {
+        color,
+      });
+    }
+
+    // After a brief delay, restore the original color state
+    // The device physically returns to original color, so state should match
+    setTimeout(async () => {
+      if (
+        originalColor &&
+        originalColor !== 'off' &&
+        originalColor !== 'unknown'
+      ) {
+        await luxaforState.setColor(originalColor, `Restored after blink`);
+      }
+    }, 2000); // 2 second delay to allow blink to complete
+
+    return result;
   }
 
   // Test connection (but don't update color state)
-  async testConnection() {
-    luxaforState.updateStatus({ lastAction: 'Connection Test' });
+  async testConnection(): Promise<ApiResponse> {
+    await luxaforState.updateStatus({ lastAction: 'Connection Test' });
     return this.makeRequest('solid_color', {
-      color: 'red'
+      color: 'red',
     });
   }
 
   // Get device info (for status display) - only updates if not recently set by user
-  async getDeviceInfo() {
+  async getDeviceInfo(): Promise<DeviceStatus> {
     try {
       // If we have a recent user action, don't overwrite it with API call
       const currentStatus = luxaforState.getStatus();
@@ -143,27 +205,27 @@ export class LuxaforService {
       this.isRefreshing = true;
       const result = await this.testConnection();
       this.isRefreshing = false;
-      
+
       if (result.success) {
         // Only update color if we don't have a recent user action
         if (!currentStatus.lastAction || this.isRefreshing) {
-          luxaforState.setColor('red', 'Connection Test');
+          await luxaforState.setColor('red', 'Connection Test');
         }
-        luxaforState.setOnline(true);
+        await luxaforState.setOnline(true);
         return luxaforState.getStatus();
       } else {
-        luxaforState.setOnline(false);
+        await luxaforState.setOnline(false);
         return luxaforState.getStatus();
       }
     } catch (error) {
       this.isRefreshing = false;
-      luxaforState.setOnline(false);
+      await luxaforState.setOnline(false);
       return luxaforState.getStatus();
     }
   }
 
   // Force refresh status (for manual refresh button)
-  async forceRefreshStatus() {
+  async forceRefreshStatus(): Promise<DeviceStatus> {
     this.isRefreshing = true;
     try {
       const result = await this.testConnection();
@@ -171,16 +233,16 @@ export class LuxaforService {
         // Only update if we don't have recent user action
         const currentStatus = luxaforState.getStatus();
         if (!currentStatus.lastAction) {
-          luxaforState.setColor('red', 'Connection Test');
+          await luxaforState.setColor('red', 'Connection Test');
         }
-        luxaforState.setOnline(true);
+        await luxaforState.setOnline(true);
         return luxaforState.getStatus();
       } else {
-        luxaforState.setOnline(false);
+        await luxaforState.setOnline(false);
         return luxaforState.getStatus();
       }
     } catch (error) {
-      luxaforState.setOnline(false);
+      await luxaforState.setOnline(false);
       return luxaforState.getStatus();
     } finally {
       this.isRefreshing = false;

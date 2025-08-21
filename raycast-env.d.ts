@@ -11,7 +11,11 @@ type ExtensionPreferences = {
   /** Luxafor User ID - Your Luxafor User ID from the Webhook tab in Luxafor software */
   "userId": string,
   /** API Endpoint - Choose your preferred API endpoint */
-  "apiEndpoint": "com" | "co.uk"
+  "apiEndpoint": "com" | "co.uk",
+  /** Menubar Layout - Choose between simple toggle or full color control */
+  "menubarMode": "simple" | "full",
+  /** Enable Debug Mode - Show detailed debug information and logging */
+  "debugMode": boolean
 }
 
 /** Preferences accessible in all the extension's commands */

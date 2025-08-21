@@ -3,35 +3,24 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to [Semantic Versioning](https://semver.org/spec/2.0.0.html).
 
 ## [Unreleased]
 
 ### Added
-- Additional patterns and customization options
-- Preference for default color on startup
-- Optional advanced diagnostics logging
+- (placeholder) Add new entries here for the next release
 
-### Fixed
-- Minor UI polish in menubar titles and subtitles
-
-## [1.1.0] - 2025-08-18
+## [1.0.0] - {PR_MERGE_DATE}
 
 ### Added
-- New command: `Luxafor Status` (menu-bar) with real-time color and connectivity
-- Global state manager to keep menubar and main UI in sync
-- Smart auto-refresh that avoids overwriting recent user actions
-- Improved menubar UX with sections, icons, and quick color actions
-
-### Changed
-- Transformed project from cheatsheets to a Luxafor device controller
-- Cleaned unused cheatsheet code, assets, and scripts
-
-### Fixed
-- Build errors related to Raycast color/icon enums
-- Menubar reverting to red after actions by tracking state properly
-
-## [1.0.0] - 2025-08-16
-
-### Added
-- Initial public release (legacy: Cheatsheets Remastered)
+- Initial public release of Luxafor Controller
+- Main control interface with full color options
+- Menubar integration with real-time status monitoring
+- Global state management for consistent UI state
+- Connection testing and health monitoring
+- Support for 7 basic colors (red, green, blue, yellow, cyan, magenta, white)
+- Blink effects for all colors
+- Smart auto-refresh that preserves user actions
+- API endpoint selection (US/UK)
+- Debug mode for development and troubleshooting
+- Comprehensive error handling and user feedback
