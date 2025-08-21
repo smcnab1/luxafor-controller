@@ -52,7 +52,7 @@
 - **Turn Off**: Turn all LEDs off
 - **Basic Colors**: Set solid colors (red, green, blue, yellow, cyan, magenta, white)
 - **Blink Effects**: Make any color blink
-- **Patterns**: Start predefined light patterns
+- **Connection Testing**: Verify device connectivity and health
 - **Menubar**: Quick access to common actions
 
 ## Troubleshooting
@@ -92,6 +92,6 @@ This will test basic functionality without going through Raycast.
 ## Pro Tips
 
 - **Use the menubar** for quick color changes during work
-- **Test connection first** before using patterns
+- **Test connection first** before using the extension
 - **Keep Luxafor software running** for webhook mode
 - **The menubar icon color** always matches your device's current state

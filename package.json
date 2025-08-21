@@ -1,15 +1,14 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "version": "1.0.0",
-  "name": "luxafor",
+  "name": "luxafor-controller",
   "title": "Luxafor Controller",
   "description": "Control your Luxafor LED device directly from Raycast",
   "icon": "logo.png",
   "author": "smcnab1",
   "contributors": [],
   "categories": [
-    "Developer Tools",
-    "Productivity"
+    "Applications"
   ],
   "license": "MIT",
   "platforms": [
@@ -19,12 +18,14 @@
     {
       "name": "control-luxafor",
       "title": "Control Luxafor",
+      "subtitle": "Luxafor Controller",
       "description": "Control your Luxafor device",
       "mode": "view"
     },
     {
       "name": "luxafor-status",
       "title": "Luxafor Status",
+      "subtitle": "Luxafor Status",
       "description": "Show Luxafor device status in menubar",
       "mode": "menu-bar",
       "interval": "5s"
