@@ -9,26 +9,26 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <a href="https://github.com/smcnab1/luxafor-controller">
+  <a href="https://www.raycast.com/smcnab1/luxafor-controller">
+  <img src="media/logo.png" alt="Logo" width="80" height="80" />
   </a>
-    <img src="media/logo.png" alt="Logo" width="80" height="80" />
+
+  
   <h3 align="center">Luxafor Controller</h3>
   <p align="center">
     Control your Luxafor LED device directly from Raycast with real-time status monitoring and quick color controls.
     <br />
-    <a href="https://www.raycast.com/smcnab1/luxafor-controller"><strong>View in Raycast Store »</strong></a>
+    <a href="https://www.raycast.com/smcnab1/luxafor-controller"><strong>Install the extension »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/smcnab1/luxafor-controller">View Source</a>
+    <a href="https://github.com/raycast/extensions/issues/new?title=%5BLuxafor+Controller%5D+...&template=extension_bug_report.yml&labels=extension%2Cbug&extension-url=https%3A%2F%2Fwww.raycast.com%2Fsmcnab1%2Fluxafor-controller&body=%0A%3C%21--%0APlease+update+the+title+above+to+consisely+describe+the+issue%0A--%3E%0A%0A%23%23%23+Extension%0A%0Ahttps%3A%2F%2Fraycast.com%2F%23%7Bextension_path%28extension%29%7D%0A%0A%23%23%23+Description%0A%0A%3C%21--%0APlease+provide+a+clear+and+concise+description+of+what+the+bug+is.+Include+screenshots+if+needed.+Please+test+using+the+latest+version+of+the+extension%2C+Raycast+and+API.%0A--%3E%0A%0A%23%23%23+Steps+To+Reproduce%0A%0A%3C%21--%0AYour+bug+will+get+fixed+much+faster+if+the+extension+author+can+easily+reproduce+it.+Issues+without+reproduction+steps+may+be+immediately+closed+as+not+actionable.%0A--%3E%0A%0A1.+In+this+environment...%0A2.+With+this+config...%0A3.+Run+%27...%27%0A4.+See+error...%0A%0A%23%23%23+Current+Behavior%0A%0A%23%23%23+Expected+Behavior%0A%0A">Report Bug</a>
     ·
-    <a href="https://github.com/smcnab1/luxafor-controller/issues/new?template=bug_report.yml">Report Bug</a>
-    ·
-    <a href="https://github.com/smcnab1/luxafor-controller/issues/new?template=feature_request.yml">Request Feature</a>
+    <a href="https://github.com/raycast/extensions/issues/new?title=%5BLuxafor+Controller%5D+...&template=extension_feature_request.yml&labels=extension%2Cfeature%2Brequest&extension-url=https%3A%2F%2Fwww.raycast.com%2Fsmcnab1%2Fluxafor-controller&body=%0A%3C%21--%0APlease+update+the+title+above+to+consisely+describe+the+issue%0A--%3E%0A%0A%23%23%23+Extension%0A%0A%23%7Brepository_url%28extension.latest_version%29%7D%0A%0A%23%23%23+Description%0A%0A%3C%21--%0ADescribe+the+feature+and+the+current+behavior%2Fstate.%0A--%3E%0A%0A%23%23%23+Who+will+benefit+from+this+feature%3F%0A%0A%23%23%23+Anything+else%3F%0A%0A%3C%21--%0ALinks%3F+References%3F+Anything+that+will+give+us+more+context%21%0ATip%3A+You+can+attach+images+or+log+files+by+clicking+this+area+to+highlight+it+and+then+dragging+files+in.%0A--%3E%0A%0A">Request Feature</a>
   </p>
 </div>
 
 <details>
-  <summary>📋 Table of Contents</summary>
+  <summary>Table of Contents</summary>
 
 - [About The Project](#about-the-project)
   - [Features](#features)
@@ -47,7 +47,7 @@
 ## About The Project
 <div align="center">
   <a href="https://github.com/smcnab1/luxafor-controller">
-    <img src="media/luxafor-controller-2.png" alt="Screenshot" width="100%" height="auto">
+    <img src="metadata/luxafor-controller-2.png" alt="Screenshot" width="100%" height="auto">
   </a>
   </div>
 
@@ -82,7 +82,7 @@
 
 ### Install
 
-1. Install the extension from the Raycast Store
+1. Install the extension from the [Raycast Store](https://www.raycast.com/smcnab1/luxafor-controller)
 2. Open Raycast preferences
 3. Go to Extensions → Luxafor Controller
 4. Enter your Luxafor User ID
@@ -186,10 +186,6 @@ npm run build
 
 ## Back Matter
 
-### Roadmap
-
-See [ROADMAP.md](./ROADMAP.md) for planned features and improvements.
-
 ### Contributing
 
 Contributions welcome. Please open an issue to discuss changes first.
@@ -217,5 +213,5 @@ MIT — see [LICENSE](./LICENSE) for details.
 [issues-url]: https://github.com/smcnab1/luxafor-controller/issues
 [license-shield]: https://img.shields.io/github/license/smcnab1/luxafor-controller.svg?style=for-the-badge
 [license-url]: https://github.com/smcnab1/luxafor-controller/blob/main/LICENSE
-[product-screenshot]: media/luxafor-controller-1.png
+[product-screenshot]: metadata/luxafor-controller-1.png
 

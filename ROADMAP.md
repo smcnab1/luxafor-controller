@@ -1,53 +1,95 @@
-# Roadmap
+# Luxafor Controller · Roadmap
 
-This roadmap outlines planned improvements for the Luxafor Controller Raycast extension.
+This document tracks planned updates and ideas for future versions of **Luxafor Controller**.
+Timelines are indicative and may shift based on feedback and usage.
 
-## Near-term (v1.1 - v1.3)
-- Preferences: Default startup color and optional blink duration
-- Menubar: Add custom hex colors and recent colors
-- Command: Quick-actions command for frequently used colors
-- Error handling: Friendly error screens and retry suggestions
-- **Custom Hex Color Input**: Color picker or hex input field in main interface
-- **Color History**: Track last 5-10 colors used for quick access
-- **Blink Duration Control**: Custom blink durations (1s, 2s, 5s, etc.)
-- **Quick Actions Command**: Dedicated command for frequently used color combinations
-- **Enhanced Error Handling**: Better error messages with retry suggestions
-- **Startup Color Preference**: Remember and restore last color on app launch
-- **Keyboard Shortcuts**: Global hotkeys for common actions (red/green toggle, turn off)
+---
 
-## Mid-term (v1.4 - v2.0)
-- Color presets: Named presets with multi-step sequences
-- Scenes: Timed patterns or daily schedules (requires local scheduler)
-- Bluetooth variants: Surface device-specific notes for BT devices
-- Status persistence: Optional local cache to restore last color on reboot
-- **Color Presets**: Named color combinations (Work Mode, Focus Time, Break)
-- **Pattern Sequences**: Multi-step color sequences with timing (red → yellow → green)
-- **Daily Schedules**: Time-based color changes (morning=blue, afternoon=green, evening=off)
-- **Workspace Integration**: Auto-color based on calendar status, Slack presence, or focus mode
-- **Device-Specific Features**: Optimize for different Luxafor models (Flag vs Orb vs Bluetooth)
-- **Status Persistence**: Local cache to restore last known state across reboots
-- **Advanced Blink Patterns**: Wave, fade, or custom blink sequences
-- **Color Temperature**: Warm/cool white variations and brightness control
+## 1.1.0 — Preferences & Shortcuts
 
-## Long-term (v2.0+)
-- Multi-device support (select device where applicable)
-- Workspace integrations (Slack, Calendar) to set presence via webhooks
-- CI/CD: Automated release workflow to Raycast Store
-- **Multi-Device Support**: Control multiple Luxafor devices simultaneously
-- **API Rate Limiting**: Smart request throttling to avoid API limits
-- **Offline Mode**: Queue commands when device is offline, execute when back online
-- **Webhook Integration**: Listen for external triggers (GitHub status, CI/CD results)
-- **Automation Rules**: "If X happens, set color to Y" logic
-- **Performance Monitoring**: Track response times and device health metrics
-- **Plugin System**: Allow third-party integrations and custom patterns
-- **Mobile Companion**: iOS/Android app for remote control
+* ⚙️ Startup colour preference: remember & restore last colour on launch
+* ⏱️ Blink duration control (1s / 2s / 5s presets)
+* 🎨 Custom hex colour input (picker or text field)
+* 📜 Colour history: last 5–10 colours for quick access
+* ⌨️ Global hotkeys for common actions (red/green toggle, turn off)
+* 🛡️ Enhanced error handling with friendly retry suggestions
 
-## Technical Improvements
-- **State Synchronization**: Better sync between menubar and main interface
-- **Memory Optimization**: Reduce unnecessary re-renders and state updates
-- **Error Recovery**: Automatic retry with exponential backoff
-- **Logging System**: Structured logging for debugging and monitoring
-- **Unit Tests**: Comprehensive test coverage for core functionality
-- **Performance Profiling**: Identify and fix performance bottlenecks
+---
 
-Suggestions and PRs welcome!
+## 1.2.0 — Quick Actions & Menubar
+
+* 🎯 Quick Actions command: define frequently used colour combos
+* 🎨 Menubar: custom hex colours & recent colour shortcuts
+* ⚡ Faster switching between solid colours & blink modes
+* 🛡️ Error recovery: automatic retry with exponential backoff
+
+---
+
+## 1.3.0 — Presets & Schedules
+
+* ⭐ Named colour presets (Work Mode / Focus Time / Break)
+* 🔄 Pattern sequences: multi-step transitions (red → yellow → green)
+* ⏰ Daily schedules: set time-based colour changes (e.g. morning = blue)
+* 📅 Workspace integration: auto-colour from calendar / Slack / focus mode
+* 💡 Advanced blink patterns: wave, fade, and custom sequences
+
+---
+
+## 1.4.0 — Device Enhancements
+
+* 🔌 Device-specific features: optimise for Flag, Orb, Bluetooth models
+* 🗂️ Status persistence: restore last colour after reboot
+* 🔥 Colour temperature support: warm/cool white & brightness slider
+* 📡 Multi-device support: control multiple Luxafor devices simultaneously
+
+---
+
+## 1.5.0 — Integrations & Automation
+
+* 🌐 Webhook integration: trigger colours from GitHub / CI results
+* 🤖 Automation rules: “If X happens, set colour to Y”
+* 📊 Performance monitoring: track response times & device health
+* 🔄 Offline mode: queue actions until device reconnects
+
+---
+
+## Backlog / Ideas
+
+* 🔗 Slack & Teams presence sync via API/webhooks
+* 📲 Mobile companion app (iOS/Android) for remote control
+* 🧩 Plugin system: allow custom integrations & patterns
+* 🚀 CI/CD: automated release workflow to Raycast Store
+
+---
+
+## ✅ Released
+
+### v1.0.0 — Initial Public Release
+
+* ✨ Control Luxafor LED devices directly from Raycast
+* 🎨 Set solid colours, patterns, and animations
+* 📊 Real-time status monitoring of connected devices
+* ⚡ Quick colour presets for common lighting scenarios
+* 🖥️ Two commands: `Control Luxafor` & `Luxafor Status`
+* 🛠️ Core logic in `luxafor-service.ts` with state in `luxafor-state.ts`
+
+---
+
+## 🔧 Technical Improvements
+
+* 🔄 State synchronisation between menubar & main command
+* 🧠 Memory optimisation: fewer re-renders & state updates
+* 🛠️ Structured logging & debugging system
+* 🧪 Unit tests for core device control logic
+* ⚡ Performance profiling & optimisation
+
+---
+
+## Contributing
+
+This extension is primarily maintained via the [Raycast Store feedback system](https://github.com/raycast/extensions/issues/new?title=%5BLuxafor+Controller%5D+...&template=extension_feature_request.yml&labels=extension%2Cfeature%2Brequest&extension-url=https%3A%2F%2Fwww.raycast.com%2Fsmcnab1%2Fluxafor-controller&body=%0A%3C%21--%0APlease+update+the+title+above+to+consisely+describe+the+issue%0A--%3E%0A%0A%23%23%23+Extension%0A%0A%23%7Brepository_url%28extension.latest_version%29%7D%0A%0A%23%23%23+Description%0A%0A%3C%21--%0ADescribe+the+feature+and+the+current+behavior%2Fstate.%0A--%3E%0A%0A%23%23%23+Who+will+benefit+from+this+feature%3F%0A%0A%23%23%23+Anything+else%3F%0A%0A%3C%21--%0ALinks%3F+References%3F+Anything+that+will+give+us+more+context%21%0ATip%3A+You+can+attach+images+or+log+files+by+clicking+this+area+to+highlight+it+and+then+dragging+files+in.%0A--%3E%0A%0A).
+Feature requests and bug reports should be submitted there.
+
+If you’d like to contribute code or ideas directly, please open an issue or PR on GitHub.
+
+---

@@ -34,4 +34,3 @@ declare namespace Arguments {
   /** Arguments passed to the `luxafor-status` command */
   export type LuxaforStatus = {}
 }
-
