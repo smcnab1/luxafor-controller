@@ -1,9 +1,8 @@
-name: Sync raycast-extension to main
+name: Sync raycast-extension → main
 
 on:
   push:
-    branches:
-      - raycast-extension
+    branches: [raycast-extension]
   workflow_dispatch:
 
 permissions:
@@ -14,44 +13,65 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      # Target (main) in workspace root
+      - name: Checkout main
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # fetch full history so we can switch branches
+          ref: main
+          fetch-depth: 0
 
-      - name: Set up Git
+      # Source (raycast-extension) in a subfolder
+      - name: Checkout raycast-extension
+        uses: actions/checkout@v4
+        with:
+          ref: raycast-extension
+          path: raycast-src
+          fetch-depth: 0
+
+      - name: Configure Git author
         run: |
-          git config user.name "smcnab1"
+          git config user.name  "smcnab1"
           git config user.email "108990188+smcnab1@users.noreply.github.com"
 
-      - name: Fetch target and source branches
+      # Sync only the whitelisted paths from source → target
+      - name: Sync selected files
         run: |
-          # Ensure both branches exist locally
-          git fetch origin main:main
-          git fetch origin raycast-extension:raycast-extension
-          git branch --all
+          set -euo pipefail
 
-      - name: Switch to main
-        run: git checkout main
+          # List of paths to sync
+          FILES=(
+            "assets"
+            "media"
+            "metadata"
+            ".gitignore"
+            ".prettierrc"
+            "CHANGELOG.md"
+            "LICENSE"
+            "SETUP.md"
+            "eslint.config.js"
+            "package-lock.json"
+            "package.json"
+            "raycast-env.d.ts"
+            "tsconfig.json"
+            "src"
+          )
 
-      - name: Copy files from raycast-extension
-        run: |
-          git restore --source=raycast-extension -- \            assets/* \
-            media/* \
-            metadata/* \
-            .gitignore \
-            .prettierrc \
-            CHANGELOG.md \
-            LICENSE \
-            SETUP.md \
-            eslint.config.js \
-            package-lock.json \
-            package.json \
-            raycast-env.d.ts \
-            tsconfig.json \
-            src/*
+          for p in "${FILES[@]}"; do
+            src="raycast-src/$p"
+            if [ -e "$src" ]; then
+              if [ -d "$src" ]; then
+                # Copy directories recursively; --delete keeps deletions in sync
+                rsync -a --delete --mkpath "$src/" "./$p/"
+              else
+                mkdir -p "$(dirname "./$p")"
+                rsync -a --mkpath "$src" "./$p"
+              fi
+            else
+              echo "Skip (not present in source): $p"
+            fi
+          done
 
-      - name: Commit & push if there are changes
+      - name: Commit & push to main (if changes)
         run: |
           if ! git diff --quiet; then
             git add -A
