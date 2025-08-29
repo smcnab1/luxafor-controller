@@ -6,11 +6,12 @@ on:
       - raycast-extension
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repo
@@ -23,14 +24,19 @@ jobs:
           git config user.name "smcnab1"
           git config user.email "108990188+smcnab1@users.noreply.github.com"
 
-      - name: Switch to main
+      - name: Fetch target and source branches
         run: |
-          git checkout main
+          # Ensure both branches exist locally
+          git fetch origin main:main
+          git fetch origin raycast-extension:raycast-extension
+          git branch --all
+
+      - name: Switch to main
+        run: git checkout main
 
       - name: Copy files from raycast-extension
         run: |
-          git checkout raycast-extension -- \
-            assets/* \
+          git restore --source=raycast-extension -- \            assets/* \
             media/* \
             metadata/* \
             .gitignore \
@@ -43,14 +49,14 @@ jobs:
             package.json \
             raycast-env.d.ts \
             tsconfig.json \
-            src/* \
+            src/*
 
-      - name: Commit changes
+      - name: Commit & push if there are changes
         run: |
           if ! git diff --quiet; then
-            git add assets/* media/* metadata/* .gitignore .prettierrc CHANGELOG.md LICENSE SETUP.md eslint.config.js package-lock.json package.json raycast-env.d.ts tsconfig.json src/*
-            git commit -m "chore(sync): update files from raycast-extension"
+            git add -A
+            git commit -m "chore(sync): update selected files from raycast-extension"
             git push origin main
           else
-            echo "No changes to commit"
+            echo "No changes to commit."
           fi
