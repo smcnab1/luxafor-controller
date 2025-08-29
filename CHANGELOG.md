@@ -1,7 +1,4 @@
-# Luxafor Changelog
-
-## [1.1.0 - ] - {PR_MERGE_DATE}
-- 
+# Luxafor Controller Changelog
 
 ## [1.0.0 - Initial Release] - 2025-08-26
 
