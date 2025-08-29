@@ -1,0 +1,56 @@
+name: Sync raycast-extension to main
+
+on:
+  push:
+    branches:
+      - raycast-extension
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # fetch full history so we can switch branches
+
+      - name: Set up Git
+        run: |
+          git config user.name "smcnab1"
+          git config user.email "108990188+smcnab1@users.noreply.github.com"
+
+      - name: Switch to main
+        run: |
+          git checkout main
+
+      - name: Copy files from raycast-extension
+        run: |
+          git checkout raycast-extension -- \
+            assets/* \
+            media/* \
+            metadata/* \
+            .gitignore \
+            .prettierrc \
+            CHANGELOG.md \
+            LICENSE \
+            SETUP.md \
+            eslint.config.js \
+            package-lock.json \
+            package.json \
+            raycast-env.d.ts \
+            tsconfig.json \
+            src/* \
+
+      - name: Commit changes
+        run: |
+          if ! git diff --quiet; then
+            git add assets/* media/* metadata/* .gitignore .prettierrc CHANGELOG.md LICENSE SETUP.md eslint.config.js package-lock.json package.json raycast-env.d.ts tsconfig.json src/*
+            git commit -m "chore(sync): update files from raycast-extension"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
