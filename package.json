@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "name": "luxafor-controller",
   "title": "Luxafor Controller",
   "description": "Control your Luxafor LED device directly from Raycast",
