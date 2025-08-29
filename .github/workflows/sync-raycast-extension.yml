@@ -13,14 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Target (main) in workspace root
       - name: Checkout main
         uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
 
-      # Source (raycast-extension) in a subfolder
       - name: Checkout raycast-extension
         uses: actions/checkout@v4
         with:
@@ -33,12 +31,9 @@ jobs:
           git config user.name  "smcnab1"
           git config user.email "108990188+smcnab1@users.noreply.github.com"
 
-      # Sync only the whitelisted paths from source → target
       - name: Sync selected files
         run: |
           set -euo pipefail
-
-          # List of paths to sync
           FILES=(
             "assets"
             "media"
@@ -60,7 +55,6 @@ jobs:
             src="raycast-src/$p"
             if [ -e "$src" ]; then
               if [ -d "$src" ]; then
-                # Copy directories recursively; --delete keeps deletions in sync
                 rsync -a --delete --mkpath "$src/" "./$p/"
               else
                 mkdir -p "$(dirname "./$p")"
@@ -72,11 +66,32 @@ jobs:
           done
 
       - name: Commit & push to main (if changes)
+        id: commit
         run: |
           if ! git diff --quiet; then
             git add -A
             git commit -m "chore(sync): update selected files from raycast-extension"
             git push origin main
+            echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to commit."
+            echo "changed=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Add workflow summary
+        if: always()
+        run: |
+          {
+            echo "## 🔄 Sync raycast-extension → main"
+            echo ""
+            echo "- **Source branch:** \`raycast-extension\`"
+            echo "- **Target branch:** \`main\`"
+            echo "- **Triggered by:** ${{ github.event_name }} @ ${{ github.actor }}"
+            echo "- **Commit pushed:** ${{ steps.commit.outputs.changed }}"
+            echo ""
+            if [ "${{ steps.commit.outputs.changed }}" = "true" ]; then
+              echo "✅ Changes were synced and pushed to **main**."
+            else
+              echo "ℹ️ No changes to sync."
+            fi
+          } >> $GITHUB_STEP_SUMMARY
