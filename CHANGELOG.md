@@ -1,5 +1,8 @@
 # Luxafor Controller Changelog
 
+## [1.1.0 — Preferences & Shortcuts] - {PR_RELEASE_DATE}
+- 
+
 ## [1.0.0 - Initial Release] - 2025-08-26
 
 ### Added
