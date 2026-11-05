@@ -1,217 +1,49 @@
-<!-- TOP ROW OF BADGES -->
+# Luxafor Controller
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+Change your Luxafor light from Raycast. Set a color, blink the light or switch it off, with quick controls in the menu bar.
 
-<a name="readme-top"></a>
-
-<div align="center">
-  <a href="https://www.raycast.com/smcnab1/luxafor-controller">
-  <img src="media/logo.png" alt="Logo" width="80" height="80" />
-  </a>
-
-  
-  <h3 align="center">Luxafor Controller</h3>
-  <p align="center">
-    Control your Luxafor LED device directly from Raycast with real-time status monitoring and quick color controls.
-    <br />
-    <a href="https://www.raycast.com/smcnab1/luxafor-controller"><strong>Install the extension »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/raycast/extensions/issues/new?title=%5BLuxafor+Controller%5D+...&template=extension_bug_report.yml&labels=extension%2Cbug&extension-url=https%3A%2F%2Fwww.raycast.com%2Fsmcnab1%2Fluxafor-controller&body=%0A%3C%21--%0APlease+update+the+title+above+to+consisely+describe+the+issue%0A--%3E%0A%0A%23%23%23+Extension%0A%0Ahttps%3A%2F%2Fraycast.com%2F%23%7Bextension_path%28extension%29%7D%0A%0A%23%23%23+Description%0A%0A%3C%21--%0APlease+provide+a+clear+and+concise+description+of+what+the+bug+is.+Include+screenshots+if+needed.+Please+test+using+the+latest+version+of+the+extension%2C+Raycast+and+API.%0A--%3E%0A%0A%23%23%23+Steps+To+Reproduce%0A%0A%3C%21--%0AYour+bug+will+get+fixed+much+faster+if+the+extension+author+can+easily+reproduce+it.+Issues+without+reproduction+steps+may+be+immediately+closed+as+not+actionable.%0A--%3E%0A%0A1.+In+this+environment...%0A2.+With+this+config...%0A3.+Run+%27...%27%0A4.+See+error...%0A%0A%23%23%23+Current+Behavior%0A%0A%23%23%23+Expected+Behavior%0A%0A">Report Bug</a>
-    ·
-    <a href="https://github.com/raycast/extensions/issues/new?title=%5BLuxafor+Controller%5D+...&template=extension_feature_request.yml&labels=extension%2Cfeature%2Brequest&extension-url=https%3A%2F%2Fwww.raycast.com%2Fsmcnab1%2Fluxafor-controller&body=%0A%3C%21--%0APlease+update+the+title+above+to+consisely+describe+the+issue%0A--%3E%0A%0A%23%23%23+Extension%0A%0A%23%7Brepository_url%28extension.latest_version%29%7D%0A%0A%23%23%23+Description%0A%0A%3C%21--%0ADescribe+the+feature+and+the+current+behavior%2Fstate.%0A--%3E%0A%0A%23%23%23+Who+will+benefit+from+this+feature%3F%0A%0A%23%23%23+Anything+else%3F%0A%0A%3C%21--%0ALinks%3F+References%3F+Anything+that+will+give+us+more+context%21%0ATip%3A+You+can+attach+images+or+log+files+by+clicking+this+area+to+highlight+it+and+then+dragging+files+in.%0A--%3E%0A%0A">Request Feature</a>
-  </p>
-</div>
-
-<details>
-  <summary>Table of Contents</summary>
-
-- [About The Project](#about-the-project)
-  - [Features](#features)
-  - [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
-- [Back Matter](#back-matter)
-  - [Roadmap](#roadmap)
-  - [Contributing](#contributing)
-  - [License](#license)
-
-</details>
-
-## About The Project
-<div align="center">
-  <a href="https://github.com/smcnab1/luxafor-controller">
-    <img src="metadata/luxafor-controller-2.png" alt="Screenshot" width="100%" height="auto">
-  </a>
-  </div>
-
-**Luxafor Controller** is a Raycast extension that provides direct control over your Luxafor LED device. Control colors and monitor device status from both the main interface and your menubar. Perfect for developers, streamers, or anyone who wants quick access to their Luxafor device controls.
-
-### Features
-
-- **Basic Controls**: Turn device on/off, set solid colors (red, green, blue, yellow, cyan, magenta, white)
-- **Blink Effects**: Make your device blink with any of the basic colors
-- **Connection Testing**: Test if your device is reachable and monitor health
-- **Easy Configuration**: Simple setup with your Luxafor User ID and API endpoint selection
-- **Menubar Status**: Real-time status indicator in your menubar showing current color and device status
-- **Global State Management**: Keeps menubar and main UI in sync with smart auto-refresh
-
-### Built With
-
-- TypeScript + React
-- `@raycast/api`, `@raycast/utils`
-- Axios for HTTP requests
-- Local storage for state persistence
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Getting Started
-
-### Prerequisites
-
-- Raycast installed on macOS
-- Luxafor device (Flag, Orb, Bluetooth Pro, etc.)
-- Luxafor software running with Webhook mode enabled
-- Your Luxafor User ID from the Webhook tab
-
-### Install
-
-1. Install the extension from the [Raycast Store](https://www.raycast.com/smcnab1/luxafor-controller)
-2. Open Raycast preferences
-3. Go to Extensions → Luxafor Controller
-4. Enter your Luxafor User ID
-5. Choose your preferred API endpoint (US or UK)
-
-### Usage
-
-#### Main Control Interface
-- **Control Luxafor**: Full control interface with all color options
-- **Color Selection**: Choose from 7 basic colors or turn off
-- **Blink Effects**: Add blinking animations to any color
-- **Connection Testing**: Verify device connectivity
-- **Health Monitoring**: Check device status and connection health
-
-#### Menubar Integration
-- **Luxafor Status**: Real-time color indicator in your menubar
-- **Quick Actions**: Toggle between red/green or access full color palette
-- **Status Monitoring**: See online/offline status at a glance
-- **Auto-refresh**: Updates every 30 seconds without interrupting user actions
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Commands
-
-### Control Luxafor
-Main interface for controlling your device with full color options and patterns.
-
-### Luxafor Status (Menubar)
-Shows real-time device status in your menubar:
-- **Color indicator**: Shows current device color with matching icon tint
-- **Online/offline status**: Real-time connection status
-- **Quick actions**: Turn off, set red/green/blue directly from menubar
-- **Customise**: Choose from a simple red/green toggle menu or a colorful menu
-- **Last action**: Shows what was last performed
-- **Auto-refresh**: Updates every 30 seconds (won't overwrite recent user actions)
+[Install from the Raycast Store](https://www.raycast.com/smcnab1/luxafor-controller) · macOS
 
 ## Setup
 
-1. **Get your Luxafor User ID**:
-   - Open Luxafor software
-   - Go to the "Webhook" tab
-   - Copy your User ID
+You'll need a compatible Luxafor device and the Luxafor companion app running with **Webhook** mode enabled. The [Luxafor Webhook guide](https://luxafor.helpscoutdocs.com/article/25-webhook-api-basics-and-guidelines) lists supported devices and software.
 
-2. **Configure the extension**:
-   - Open Raycast preferences
-   - Go to Extensions → Luxafor Controller
-   - Enter your User ID
-   - Choose your preferred API endpoint
+1. Copy your **User ID** from the Luxafor app's **Webhook** tab.
+2. Open **Raycast Settings → Extensions → Luxafor Controller**.
+3. Enter **Luxafor User ID** and select **api.luxafor.com** as the API endpoint.
+4. Open **Control Luxafor** and choose a color or **Turn Off**.
 
-3. **Enable menubar status** (optional):
-   - The "Luxafor Status" command will appear in your menubar
-   - Shows current device color and status
-   - Provides quick access to common actions
+Keep the companion app running while using the extension. The older `api.luxafor.co.uk` option is retained, but its current operation is unverified; use the documented `.com` endpoint.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Commands
 
-## Notes
+| Command                 | What it does                                            |
+| ----------------------- | ------------------------------------------------------- |
+| Control Luxafor         | Set a solid color, blink a color or turn the light off. |
+| Luxafor Menu Bar Status | Change colors from the menu bar.                        |
 
-- This extension uses the official Luxafor Webhook API. It cannot read the device's actual LED state; instead, it tracks the most recent action and avoids auto-refresh from clobbering your choice.
-- If the Luxafor app is not running or webhook mode is disabled, requests will fail.
+Choose red, green, blue, yellow, cyan, magenta or white. In **Control Luxafor**, open Actions on a color to blink it. **Menubar Layout** in extension settings offers a simple red/green toggle or the full color menu.
+
+The displayed color and online/offline labels are inferred from local history and requests. They cannot confirm the light's actual state. **Test Connection** sends a red command and may leave the light red; check the device yourself and choose another color afterwards.
 
 ## Troubleshooting
 
-- Ensure your **User ID** is correct (from the Luxafor app → Webhook tab)
-- Verify the chosen **API endpoint** matches your region
-- Keep the **Luxafor app running** (Webhook mode)
-- Try **Test Connection** to verify connectivity
-- If actions succeed but LEDs don't change, replug the device and restart the Luxafor app
+If the light does not change, check the User ID, device connection and Webhook mode, then restart the companion app if needed. A successful API response alone does not confirm that the light changed.
 
-## Supported Devices
-
-- Luxafor Flag (Tested to work)
-- Luxafor Colorblind Flag  
-- Luxafor Orb
-- Luxafor Bluetooth Pro
-- Luxafor Bluetooth
-
-## API Endpoints
-
-- `api.luxafor.com` (US)
-- `api.luxafor.co.uk` (UK)
+For menu bar controls, enable **Luxafor Menu Bar Status** in Raycast's extension settings. See [setup and troubleshooting](SETUP.md) for more detail, or [report a bug or request a feature](https://github.com/smcnab1/luxafor-controller/issues). Keep your User ID out of issue reports and screenshots.
 
 ## Development
 
+Use macOS, Raycast, npm and Node.js 22.14.0 or newer (the locked CLI’s minimum):
+
 ```bash
-npm install
+npm ci
+npm run build
 npm run dev
 ```
 
-## Building
+`npm run dev` registers the development extension in Raycast. This README describes the source on `main`; the [request-history update](https://github.com/raycast/extensions/pull/33069) is being prepared separately.
 
-```bash
-npm run build
-```
+See the [changelog](CHANGELOG.md), [roadmap](ROADMAP.md) and [release checklist](RELEASE_CHECKLIST.md). Contributions are welcome through issues and pull requests.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## References
-
-- Luxafor Webhook API basics and endpoints: [Help Scout Docs](https://luxafor.helpscoutdocs.com/article/25-webhook-api-basics-and-guidelines), [Luxafor UK](https://luxafor.co.uk/webhook-api/)
-
-## Back Matter
-
-### Contributing
-
-Contributions welcome. Please open an issue to discuss changes first.
-
-1. Fork the project
-2. Create a feature branch (`git checkout -b feature/my-change`)
-3. Commit your changes (`git commit -m 'feat: ...'`)
-4. Push to your branch (`git push origin feature/my-change`)
-5. Open a Pull Request
-
-### License
-
-MIT — see [LICENSE](./LICENSE) for details.
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/smcnab1/luxafor-controller.svg?style=for-the-badge
-[contributors-url]: https://github.com/smcnab1/luxafor-controller/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/smcnab1/luxafor-controller.svg?style=for-the-badge
-[forks-url]: https://github.com/smcnab1/luxafor-controller/network/members
-[stars-shield]: https://img.shields.io/github/stars/smcnab1/luxafor-controller.svg?style=for-the-badge
-[stars-url]: https://github.com/smcnab1/luxafor-controller/stargazers
-[issues-shield]: https://img.shields.io/github/issues/smcnab1/luxafor-controller.svg?style=for-the-badge
-[issues-url]: https://github.com/smcnab1/luxafor-controller/issues
-[license-shield]: https://img.shields.io/github/license/smcnab1/luxafor-controller.svg?style=for-the-badge
-[license-url]: https://github.com/smcnab1/luxafor-controller/blob/main/LICENSE
-[product-screenshot]: metadata/luxafor-controller-1.png
-
+[MIT licensed](LICENSE).

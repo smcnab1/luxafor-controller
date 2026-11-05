@@ -16,7 +16,8 @@ Target cadence: every ~5 weeks.
 ---
 
 ## 2. Documentation
-- [ ] Update `README.md` with new features (short “Next Up” block)
+- [ ] Preserve the simplified personal-repository `README.md` when syncing accepted Raycast changes. Update command names, setup and behavior in place; do not replace it with the Store README. The existing sync workflow deliberately excludes `README.md`.
+- [ ] When the request-history update lands, remove the pending-update note and old connection-test caveat from `README.md` and `SETUP.md`, then describe the accepted commands and history behavior.
 - [ ] Update `ROADMAP.md` (move milestone into ✅ Released if complete)
 - [ ] Write `CHANGELOG.md` entry with summary + features/fixes
 - [ ] Prepare GitHub Release description (copy from roadmap style)

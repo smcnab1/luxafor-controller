@@ -1,97 +1,30 @@
-# Setup Guide for Luxafor Controller
+# Setup and troubleshooting
 
-## Prerequisites
+## Connect your device
 
-1. **Luxafor Device**: Any Luxafor 2.0 compatible device
-   - Luxafor Flag
-   - Luxafor Colorblind Flag
-   - Luxafor Orb
-   - Luxafor Bluetooth Pro
-   - Luxafor Bluetooth
+1. Connect a compatible Luxafor device and start the companion app. Check the [vendor's Webhook guide](https://luxafor.helpscoutdocs.com/article/25-webhook-api-basics-and-guidelines) for device and software requirements.
+2. Enable **Webhook** mode in the companion app and copy the **User ID**.
+3. Open **Raycast Settings → Extensions → Luxafor Controller**.
+4. Enter **Luxafor User ID** and select **api.luxafor.com**. The older `.co.uk` option is retained but is not verified as a working regional alternative.
+5. Open **Control Luxafor** and choose a color. Check the physical light to confirm the change.
 
-2. **Luxafor Software**: Install the latest version from [luxafor.co.uk](https://luxafor.co.uk/download/)
+Keep the companion app running. Do not share your User ID in screenshots or issue reports.
 
-## Step 1: Get Your User ID
+## Use the menu bar
 
-1. Open Luxafor software
-2. Go to the **Webhook** tab
-3. Copy your **User ID** (it's a long string of characters)
+Enable **Luxafor Menu Bar Status** in Raycast's extension settings. **Menubar Layout** offers a simple red/green toggle or the full color menu.
 
-## Step 2: Configure the Extension
+The color and online/offline labels come from local state and request results. They are not live device readings, and a green status indicator does not prove the light changed.
 
-1. Open Raycast
-2. Go to **Extensions** → **Luxafor Controller**
-3. Click the gear icon (⚙️) to open preferences
-4. Enter your **Luxafor User ID**
-5. Choose your preferred **API Endpoint**:
-   - `api.luxafor.com` (US)
-   - `api.luxafor.co.uk` (UK)
+## Check a problem
 
-## Step 3: Test the Connection
+| Problem                                         | What to check                                                                                                        |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| The light does not change                       | Confirm the User ID, device connection and Webhook mode. Use the `.com` endpoint and check your internet connection. |
+| A request succeeds but the light stays the same | Check the physical device and restart the companion app. API success alone does not confirm delivery to the light.   |
+| The menu bar control is missing                 | Enable **Luxafor Menu Bar Status** in Raycast's extension settings. Restart Raycast if needed.                       |
+| The displayed color is wrong                    | Use the physical light as the reference. The extension cannot read its actual LED state.                             |
 
-1. In the extension, click **Test Connection**
-2. Confirm the test (it will briefly turn your device red)
-3. If successful, you'll see a green checkmark
+**Test Connection** changes the light: it sends a red command, and the current `main` implementation sends it even if you cancel the dialog. It does not restore the previous color. Use it only when you intend to send red, then choose another color yourself.
 
-## Step 4: Enable Menubar Status (Optional)
-
-1. The extension automatically creates a **Luxafor Status** command
-2. This appears in your menubar as a colored circle icon
-3. The icon color matches your device's current color
-4. Click it for quick actions and status information
-
-### Menubar Features:
-- **Real-time color indicator**: Shows current device color
-- **Online/offline status**: Connection status at a glance
-- **Quick actions**: Turn off, set red/green/blue directly
-- **Auto-refresh**: Updates every 30 seconds
-- **Last action**: Shows what was last performed
-
-## Step 5: Start Controlling!
-
-- **Turn Off**: Turn all LEDs off
-- **Basic Colors**: Set solid colors (red, green, blue, yellow, cyan, magenta, white)
-- **Blink Effects**: Make any color blink
-- **Connection Testing**: Verify device connectivity and health
-- **Menubar**: Quick access to common actions
-
-## Troubleshooting
-
-### Device Not Responding?
-- Check your User ID is correct
-- Ensure Luxafor software is running
-- Verify your device is connected and powered on
-- Try the **Test Connection** feature
-
-### API Errors?
-- Check your internet connection
-- Verify the API endpoint is correct
-- Ensure your User ID is valid
-
-### Menubar Not Showing?
-- Make sure the "Luxafor Status" command is enabled
-- Check Raycast preferences for the extension
-- Restart Raycast if needed
-
-### Still Having Issues?
-- Check the Luxafor software logs
-- Verify your device supports webhook API
-- Try restarting Luxafor software
-
-## Testing the API Directly
-
-You can test the API calls directly using the included test script:
-
-```bash
-# Edit test-api.js and set your User ID
-npm run test:api
-```
-
-This will test basic functionality without going through Raycast.
-
-## Pro Tips
-
-- **Use the menubar** for quick color changes during work
-- **Test connection first** before using the extension
-- **Keep Luxafor software running** for webhook mode
-- **The menubar icon color** always matches your device's current state
+Still having trouble? [Open an issue](https://github.com/smcnab1/luxafor-controller/issues) with your device model, Raycast version and steps to reproduce. Remove your User ID and any private information first.
