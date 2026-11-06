@@ -21,10 +21,10 @@ body:
       description: Core dev tasks for this release
       value: |
         - [ ] Create milestone in GitHub
-        - [ ] Create release branch (`release/vX.Y.Z`)
+        - [ ] Start from `release/next-raycast-update`
         - [ ] Implement scoped features (must-have first, stretch later)
-        - [ ] Bump version in `package.json`
-        - [ ] Run linting/formatting (`prettier --write .`)
+        - [ ] Decide a version once the next release scope is known
+        - [ ] Run `npm run check` and scope formatting to changed files
         - [ ] Run tests and smoke test commands locally
         - [ ] Update internal roadmap (`ROADMAP.md`) if scope changed
 
@@ -55,11 +55,11 @@ body:
       label: Tag & Release
       description: Final tagging and publishing to GitHub
       value: |
-        - [ ] Merge release branch → `raycast-extension`
-        - [ ] Tag release (`git tag vX.Y.Z && git push --tags`)
-        - [ ] Create GitHub Release with notes (link to roadmap milestone)
+        - [ ] Reconcile the actual accepted Raycast source into `main`
+        - [ ] Create a source tag only when separately authorised
+        - [ ] Create a GitHub Release only when separately authorised
         - [ ] Confirm CI/build passes
-        - [ ] Confirm `main` branch synced
+        - [ ] Record full file parity and intentional personal-only differences
 
   - type: textarea
     id: publish

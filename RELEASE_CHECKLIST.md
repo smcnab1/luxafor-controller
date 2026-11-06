@@ -1,57 +1,24 @@
-# Release Cycle Checklist
+# Release checklist
 
-A reusable checklist for each new Luxafor Controller release.  
-Target cadence: every ~5 weeks.
+`main` tracks the reconciled published extension with personal documentation and offline tests. Start future features on `release/next-raycast-update`; decide a new standalone version only when its scope is known. Historical release branches remain reference material.
 
----
+## Development and checks
 
-## 1. Development
-- [ ] Create milestone in GitHub with version (e.g. `v1.2.0`)
-- [ ] Create release branch (`release/v1.2.0`)
-- [ ] Implement scoped features (must-have first, stretch later)
-- [ ] Ensure linting/formatting passes (`prettier --write .`)
-- [ ] Run tests and smoke test commands locally
-- [ ] Update internal roadmap (`ROADMAP.md`) if scope changed
+- Preserve the published commands, preference keys, target-scoped history and uncertain-delivery behaviour. Opening, refreshing, background launches and cancelled confirmations must never change the light.
+- Use Node 26.12.1 and npm. Run `npm ci --ignore-scripts`, then `npm run check`. Automated tests block external networking; never insert a real User ID into fixtures.
+- Test native Raycast separately: main/custom/menu views, shortcuts, confirmations, read-only refresh and failure feedback. A successful build or mocked test is not physical-device acceptance.
+- Genuine upgrade, User ID retention, full menu lifecycle, accessibility, appearance, live API and physical effects need their own evidence. Real-device commands require deliberate authorisation.
 
----
+## Prepare a Store update
 
-## 2. Documentation
-- [ ] Preserve the simplified personal-repository `README.md` when syncing accepted Raycast changes. Update command names, setup and behavior in place; do not replace it with the Store README. The existing sync workflow deliberately excludes `README.md`.
-- [ ] When the request-history update lands, remove the pending-update note and old connection-test caveat from `README.md` and `SETUP.md`, then describe the accepted commands and history behavior.
-- [ ] Update `ROADMAP.md` (move milestone into ✅ Released if complete)
-- [ ] Write `CHANGELOG.md` entry with summary + features/fixes
-- [ ] Prepare GitHub Release description (copy from roadmap style)
+- Compare the complete extension subtree with the latest accepted Raycast source, including screenshots and support files. Keep the personal README, tests, workflows, instructions and development scripts in this repository.
+- Add exactly one new user-facing changelog entry with `{PR_MERGE_DATE}` for the next submission; preserve all published entries. Do not guess the merge date or bump the version merely to open the next branch.
+- Use the current Raycast PR template with concise text and genuine captures. Update the existing upstream PR for review corrections rather than creating duplicates.
+- Review dependencies explicitly; do not automatically apply audit fixes or blanket overrides. Keep next-release changes distinct from the accepted baseline.
+- Obtain appropriate delivery authorisation. Do not dispatch a sync workflow to overwrite `main`; the retained sync workflow now reports a comparison only.
 
----
+## After publication
 
-## 3. Pre-Release / Beta
-- [ ] Push release branch to GitHub
-- [ ] Share pre-release build (Raycast test flight / internal testers)
-- [ ] Collect feedback and fix high-priority issues
-- [ ] Bump version in extension manifest (`package.json`)
-
----
-
-## 4. Tag & Release
-- [ ] Merge release branch → `main`
-- [ ] Tag release (`git tag v1.2.0 && git push --tags`)
-- [ ] Create GitHub Release with notes (link to roadmap milestone)
-- [ ] Confirm CI/build passes
-
----
-
-## 5. Publish
-- [ ] Submit updated extension to Raycast Store
-- [ ] Verify listing shows new version & features
-- [ ] Announce release (Slack, Twitter, README badge, etc.)
-- [ ] Close milestone in GitHub and roll tasks forward if needed
-
----
-
-## 6. Post-Release
-- [ ] Open new milestone (e.g. `v1.3.0`)
-- [ ] Seed issues/tasks from roadmap
-- [ ] Note any carry-overs from previous cycle
-- [ ] Start new release branch when development begins
-
----
+- Verify both merge and Store publication, then reconcile the actual accepted subtree. Document every intentional personal-only difference and preserve unique work.
+- A GitHub tag/release is separate from Store publication. Prepare it only with explicit authorisation and verified version/source evidence; do not upload an untested archive as a release asset.
+- Verify tests/build and any applicable native checks. Start or fast-forward `release/next-raycast-update` from the reconciled `main`, preserving any pending work. Never force-reset a branch with unique commits.

@@ -1,30 +1,41 @@
 # Setup and troubleshooting
 
-## Connect your device
+## Configure without changing the light
 
-1. Connect a compatible Luxafor device and start the companion app. Check the [vendor's Webhook guide](https://luxafor.helpscoutdocs.com/article/25-webhook-api-basics-and-guidelines) for device and software requirements.
-2. Enable **Webhook** mode in the companion app and copy the **User ID**.
-3. Open **Raycast Settings → Extensions → Luxafor Controller**.
-4. Enter **Luxafor User ID** and select **api.luxafor.com**. The older `.co.uk` option is retained but is not verified as a working regional alternative.
-5. Open **Control Luxafor** and choose a color. Check the physical light to confirm the change.
+1. Connect your device and start the Luxafor companion app.
+2. Select **Webhook** mode and copy the User ID privately.
+3. Open Raycast's **Extensions → Luxafor Controller** preferences.
+4. Enter **Luxafor User ID** and select **api.luxafor.com**.
+5. Open **Control Luxafor**. Its initial history may be unknown; this is expected.
 
-Keep the companion app running. Do not share your User ID in screenshots or issue reports.
+If upgrading, check that the masked User ID preference retained your value. Re-enter the value privately if Raycast asks. Do not include it in screenshots or issue reports.
 
-## Use the menu bar
+## Deliberately test a light change
 
-Enable **Luxafor Menu Bar Status** in Raycast's extension settings. **Menubar Layout** offers a simple red/green toggle or the full color menu.
+1. Choose **Send Red Test…** from the action panel.
+2. Read the confirmation. **Cancel** sends nothing; **Send Red** sends exactly one red command.
+3. Inspect the physical device yourself. The previous color is not restored automatically.
 
-The color and online/offline labels come from local state and request results. They are not live device readings, and a green status indicator does not prove the light changed.
+A success toast means API acceptance only. To choose a different color afterwards, explicitly send that color.
 
-## Check a problem
+## Troubleshooting
 
-| Problem                                         | What to check                                                                                                        |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| The light does not change                       | Confirm the User ID, device connection and Webhook mode. Use the `.com` endpoint and check your internet connection. |
-| A request succeeds but the light stays the same | Check the physical device and restart the companion app. API success alone does not confirm delivery to the light.   |
-| The menu bar control is missing                 | Enable **Luxafor Menu Bar Status** in Raycast's extension settings. Restart Raycast if needed.                       |
-| The displayed color is wrong                    | Use the physical light as the reference. The extension cannot read its actual LED state.                             |
+| What you see                                | What to check                                                                                                                                                                                                     |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| API acceptance but no light change          | Check the companion app, Webhook mode, User ID, device power and connection. Acceptance is not physical telemetry.                                                                                                |
+| Timeout, network or HTTP error              | Check internet access and configuration. Delivery may already have occurred; inspect the light before resending.                                                                                                  |
+| API reported an error                       | Check configuration and Webhook mode. Previous accepted history is retained.                                                                                                                                      |
+| Another request in progress                 | Wait for the active request to finish. A suspended command keeps its lock. Close the active command, then refresh history; a terminated process releases its guard without replay. Nothing is queued or replayed. |
+| History unavailable                         | Reopen the command. A storage failure before sending blocks the request.                                                                                                                                          |
+| History could not be saved after acceptance | Inspect the light before resending. The API request succeeded, but the displayed history may be older.                                                                                                            |
+| Menu history is old                         | Choose **Refresh History**. Ensure **Luxafor Menu Bar** is enabled; Raycast's scheduled refresh is approximate.                                                                                                   |
+| Existing `.co.uk` setting fails             | Its operation is unverified. Select the documented `.com` endpoint deliberately; the extension never silently switches destinations.                                                                              |
 
-**Test Connection** changes the light: it sends a red command, and the current `main` implementation sends it even if you cancel the dialog. It does not restore the previous color. Use it only when you intend to send red, then choose another color yourself.
+If reporting a problem, include your Raycast version, operating system, device model, action, approximate time and the extension's sanitized error message. Never include your User ID, raw HTTP data or private preference screenshots.
 
-Still having trouble? [Open an issue](https://github.com/smcnab1/luxafor-controller/issues) with your device model, Raycast version and steps to reproduce. Remove your User ID and any private information first.
+## Custom colors and shortcuts
+
+- Open **Set Custom Color**, enter `#3A7` or `#33AA77`, then choose **Set Custom Color**. Three-digit values expand each digit. A validation error sends nothing.
+- Use **Set Busy**, **Set Available** or **Turn off** directly from root search. Assign your own aliases or hotkeys in Raycast's command settings.
+- In **Control Luxafor**, select a recent color to resend it deliberately. **Clear Recent Colors** removes the five-item list without changing the light. It does not erase the last accepted command.
+- Use **View Request Details** on the history row for the full timestamp and troubleshooting text. **Refresh History** is read-only.
