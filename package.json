@@ -112,17 +112,17 @@
     }
   ],
   "dependencies": {
-    "@raycast/api": "^2.11.1",
+    "@raycast/api": "^2.13.1",
     "@raycast/utils": "^2.3.3"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^2.2.0",
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",
-    "eslint": "^10.13.0",
-    "prettier": "^3.9.10",
+    "eslint": "^10.15.0",
+    "prettier": "^3.10.1",
     "typescript": "~6.0.3",
-    "vitest": "^5.0.5",
+    "vitest": "^5.1.1",
     "react-test-renderer": "^19.3.1",
     "@types/react-test-renderer": "^19.3.0"
   },
