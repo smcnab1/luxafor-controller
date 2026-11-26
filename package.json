@@ -121,7 +121,7 @@
     "@types/react": "19.3.0",
     "eslint": "^10.15.0",
     "prettier": "^3.9.10",
-    "typescript": "~6.0.3",
+    "typescript": "~7.0.2",
     "vitest": "^5.0.5",
     "react-test-renderer": "^19.3.1",
     "@types/react-test-renderer": "^19.3.0"
