@@ -18,3 +18,5 @@ reviews:
   path_instructions:
     - path: "src/**"
       instructions: "Trace explicit device actions, cancellation and uncertain delivery through the Raycast command lifecycle. Check concurrency and feedback against AGENTS.md."
+    - path: ".github/workflows/**"
+      instructions: "Keep the extension validation independent of a live device and preserve the existing sync trigger boundaries."
